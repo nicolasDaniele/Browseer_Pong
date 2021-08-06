@@ -1,11 +1,13 @@
 import Palletes from "../gameObjects/palletes.js";
 
 class Scene_play extends Phaser.Scene {
-    constructor(){
-        super({key: "Scene_play"});
+    constructor() {
+        super({
+            key: "Scene_play"
+        });
     }
 
-    create(){
+    create() {
         let center_width = this.sys.game.config.width / 2;
         let center_height = this.sys.game.config.height / 2;
 
@@ -36,36 +38,32 @@ class Scene_play extends Phaser.Scene {
         this.cursor_S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     }
 
-    palleteCollision(){
+    palleteCollision() {
         this.ball.setVelocityY(Phaser.Math.Between(-120, 120));
     }
 
-    update(){
+    update() {
         // Ball respawn
-        if(this.ball.x < 0 || this.ball.x > this.sys.game.config.width){
+        if (this.ball.x < 0 || this.ball.x > this.sys.game.config.width) {
             this.ball.setPosition(this.sys.game.config.width / 2, this.sys.game.config.height / 2);
         }
 
         // Palletes movement
         // Right pallete
-        if(this.cursor.down.isDown){
+        if (this.cursor.down.isDown) {
             this.rp.body.setVelocityY(300);
-        }
-        else if(this.cursor.up.isDown){
+        } else if (this.cursor.up.isDown) {
             this.rp.body.setVelocityY(-300);
-        }
-        else{
+        } else {
             this.rp.body.setVelocityY(0);
         }
 
         // Left pallete
-        if(this.cursor_S.isDown){
+        if (this.cursor_S.isDown) {
             this.lp.body.setVelocityY(300);
-        }
-        else if(this.cursor_W.isDown){
+        } else if (this.cursor_W.isDown) {
             this.lp.body.setVelocityY(-300);
-        }
-        else{
+        } else {
             this.lp.body.setVelocityY(0);
         }
     }
